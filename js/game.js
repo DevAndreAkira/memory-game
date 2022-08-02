@@ -22,11 +22,11 @@ else {
 document.body.appendChild(app.view);
 
 // ? SOUND
-const soundCard = PIXI.sound.Sound.from('../sound/card.mp3');
+const soundCard = PIXI.sound.Sound.from('./sound/card.mp3');
 soundCard.volume = .1;
-const soundWin = PIXI.sound.Sound.from('../sound/Applause2.ogg');
+const soundWin = PIXI.sound.Sound.from('./sound/Applause2.ogg');
 soundWin.volume = .1;
-const soundOk = PIXI.sound.Sound.from('../sound/Item2.ogg');
+const soundOk = PIXI.sound.Sound.from('./sound/Item2.ogg');
 soundOk.volume = .1;
 
 // // & AJUSTANDO TAMANHO DE TELA
