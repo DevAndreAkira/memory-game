@@ -1,8 +1,24 @@
-const app = new PIXI.Application({
-  backgroundColor: 0x1099bb,
-  autoResize: true,
-  resolution: devicePixelRatio,
-});
+let app;
+
+if (innerWidth <= 767) {
+  app = new PIXI.Application({
+    backgroundColor: 0x1099bb,
+    autoResize: true,
+    resolution: devicePixelRatio,
+    width: 235,
+    height: 415
+  });
+}
+else {
+  app = new PIXI.Application({
+    backgroundColor: 0x1099bb,
+    autoResize: true,
+    resolution: devicePixelRatio,
+    width: 320,
+    height: 620
+  });
+}
+
 document.body.appendChild(app.view);
 
 // ? SOUND
@@ -13,18 +29,16 @@ soundWin.volume = .1;
 const soundOk = PIXI.sound.Sound.from('../sound/Item2.ogg');
 soundOk.volume = .1;
 
-// & AJUSTANDO TAMANHO DE TELA
-// Resize function window
-function resize() {
-  app.renderer.resize(window.innerWidth - '17', window.innerHeight);
-  // card_back.position.set(app.screen.width / 2, app.screen.height / 2);
-  // card_front.position.set(app.screen.width / 2, app.screen.height / 2);
-}
-resize();
+// // & AJUSTANDO TAMANHO DE TELA
+// // Resize function window
+// function resize() {
+//   app.renderer.resize(window.innerWidth - '17', window.innerHeight);
+// }
+// resize();
 
-window.onresize = () => {
-  resize();
-}
+// window.onresize = () => {
+//   resize();
+// }
 
 // ^LÓGICA
 
