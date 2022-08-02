@@ -148,7 +148,7 @@ function vanish() {
         guardando2.alpha = 1;
         guardando1.interactive = true;
         guardando2.interactive = true;
-      }, 500)
+      }, 50)
     }
   }
   console.log(this.state.data)
