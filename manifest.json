@@ -1,6 +1,6 @@
 {
-    "name": "TITULO_SITE",
-    "short_name": "DESCRICAO",
+    "name": "Memory Game",
+    "short_name": "Memory Game",
     "icons": [
         {
             "src": "./img/192.png",
