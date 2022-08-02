@@ -42,9 +42,8 @@ soundOk.volume = .1;
 
 // ^LÓGICA
 
+// Determino o número de cores que terá nas cartas
 let colorCards = ['0xff0000', '0x00ffff', '0x0000ff', '0xff00ff', '0xffff00', '0x00FF00'];
-// let colorCards = ['red', 'ciano', 'blue'];
-let numeroCard = 0;
 let card = {};
 let tentativas = 0;
 let guardando1 = 0;
@@ -53,6 +52,7 @@ let pontos = 0;
 
 let teste = 0;
 
+// Função que irá retornar à posição x=0 a cada 3 cartas
 function cordenadasX(numero) {
   if (numero >= 3) {
     numero = teste;
@@ -73,11 +73,11 @@ function cordenadasY(numero) {
   return numero * -150;
 }
 
+// Parte de trás da carta
 function criandoBack(color, index) {
   const card_back = new PIXI.Graphics();
   card_back.beginFill(color);
   if (innerWidth <= 767) {
-    // card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 240 : 160 : 80 : 0, 50, 75, 10)
     card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
   }
   else {
@@ -86,11 +86,11 @@ function criandoBack(color, index) {
   app.stage.addChild(card_back);
 }
 
+// Parte da frente da carta
 function criandoFront(index) {
   const card_front = new PIXI.Graphics();
   card_front.beginFill(0x2d2d2d);
   if (innerWidth <= 767) {
-    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 240 : 160 : 80 : 0, 50, 75, 10)
     card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
   }
   else {
@@ -103,9 +103,11 @@ function criandoFront(index) {
   app.stage.addChild(card_front);
 }
 
+// Duplicando o array de cores e embaralhando
 const duplicateCharacters = [...colorCards, ...colorCards];
 const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
 
+// Gerando as cartas e setando um número conforme sua cor
 shuffledArray.forEach((e, i) => {
   card[i] = {
     frente: shuffledArray[i],
@@ -118,6 +120,7 @@ shuffledArray.forEach((e, i) => {
   criandoFront(i);
 })
 
+// Função dispara ao clicar na carta
 function vanish() {
   soundCard.play();
 
@@ -152,5 +155,4 @@ function vanish() {
       }, 50)
     }
   }
-  console.log(this.state.data)
 }
