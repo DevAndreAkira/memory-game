@@ -42,7 +42,7 @@ soundOk.volume = .1;
 
 // ^LÓGICA
 
-let colorCards = ['0xff0000', '0x00ffff', '0x0000ff', '0xff00ff', '0x000000', '0xf0f0f0'];
+let colorCards = ['0xff0000', '0x00ffff', '0x0000ff', '0xff00ff', '0xffff00', '0x00FF00'];
 // let colorCards = ['red', 'ciano', 'blue'];
 let numeroCard = 0;
 let card = {};
@@ -109,7 +109,7 @@ const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
 shuffledArray.forEach((e, i) => {
   card[i] = {
     frente: shuffledArray[i],
-    tras: (shuffledArray[i] === '0xff0000' ? '1' : shuffledArray[i] === '0x00ffff' ? '2' : shuffledArray[i] === '0x0000ff' ? '3' : shuffledArray[i] === '0xff00ff' ? '4' : shuffledArray[i] === '0x000000' ? '5' : shuffledArray[i] === '0xf0f0f0' ? '6' : '')
+    tras: (shuffledArray[i] === '0xff0000' ? '1' : shuffledArray[i] === '0x00ffff' ? '2' : shuffledArray[i] === '0x0000ff' ? '3' : shuffledArray[i] === '0xff00ff' ? '4' : shuffledArray[i] === '0xffff00' ? '5' : shuffledArray[i] === '0x00FF00' ? '6' : '')
   }
   criandoBack(shuffledArray[i], i);
 })
