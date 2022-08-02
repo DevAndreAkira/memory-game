@@ -1,5 +1,3 @@
-// console.clear()
-
 const app = new PIXI.Application({
   backgroundColor: 0x1099bb,
   autoResize: true,
@@ -49,7 +47,12 @@ function cordenadasX(numero) {
       teste = 0;
     }
   }
-  return numero * 105;
+  if (innerWidth <= 767) {
+    return numero * 80;
+  }
+  else {
+    return numero * 105;
+  }
 }
 
 function cordenadasY(numero) {
@@ -59,15 +62,26 @@ function cordenadasY(numero) {
 function criandoBack(color, index) {
   const card_back = new PIXI.Graphics();
   card_back.beginFill(color);
-  card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10);
-  card_back.endFill();
+  if (innerWidth <= 767) {
+    // card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 240 : 160 : 80 : 0, 50, 75, 10)
+    card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
+  }
+  else {
+    card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
+  } card_back.endFill();
   app.stage.addChild(card_back);
 }
 
 function criandoFront(index) {
   const card_front = new PIXI.Graphics();
   card_front.beginFill(0x2d2d2d);
-  card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
+  if (innerWidth <= 767) {
+    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 240 : 160 : 80 : 0, 50, 75, 10)
+    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
+  }
+  else {
+    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
+  }
   card_front.state.data = card[index].tras;
   card_front.interactive = true;
   card_front.buttonMode = true;
