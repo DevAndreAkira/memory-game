@@ -133,6 +133,7 @@ function vanish() {
       pontos = pontos + 1;
       if (pontos === colorCards.length) {
         soundWin.play();
+        alert("Parabéns!");
       }
       soundOk.play();
       tentativas = 0;
