@@ -149,7 +149,7 @@ function vanish() {
         guardando2.alpha = 1;
         guardando1.interactive = true;
         guardando2.interactive = true;
-      }, 200)
+      }, 300)
     }
   }
   console.log(this.state.data)
