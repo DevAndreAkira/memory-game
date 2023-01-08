@@ -110,10 +110,10 @@ function criandoFront(index) {
   const card_front = new PIXI.Graphics();
   card_front.beginFill(0x2d2d2d);
   if (innerWidth <= 767) {
-    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
+    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
   }
   else {
-    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
+    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
   }
   card_front.state.data = card[index].tras;
   card_front.interactive = true;
