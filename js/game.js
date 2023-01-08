@@ -42,8 +42,30 @@ soundOk.volume = .1;
 
 // ^LÓGICA
 
+const sprite1 = PIXI.Sprite.from('./img/sprite1.png');
+const sprite2 = PIXI.Sprite.from('./img/sprite2.png');
+const sprite3 = PIXI.Sprite.from('./img/sprite3.png');
+const sprite4 = PIXI.Sprite.from('./img/sprite4.png');
+const sprite5 = PIXI.Sprite.from('./img/sprite5.png');
+const sprite6 = PIXI.Sprite.from('./img/sprite6.png');
+
+
+// sprite1.width = 150;
+// sprite2.width = 150;
+// sprite3.width = 150;
+// sprite4.width = 150;
+// sprite5.width = 150;
+// sprite6.width = 150;
+
 // Determino o número de cores que terá nas cartas
-let colorCards = ['0xff0000', '0x00ffff', '0x0000ff', '0xff00ff', '0xffff00', '0x00FF00'];
+let colorCards = [
+  sprite1, 
+  sprite2, 
+  sprite3, 
+  sprite4, 
+  sprite5, 
+  sprite6
+];
 let card = {};
 let tentativas = 0;
 let guardando1 = 0;
@@ -65,24 +87,21 @@ function cordenadasX(numero) {
     return numero * 80;
   }
   else {
-    return numero * 105;
+    return numero * 100;
   }
-}
-
-function cordenadasY(numero) {
-  return numero * -150;
 }
 
 // Parte de trás da carta
 function criandoBack(color, index) {
   const card_back = new PIXI.Graphics();
-  card_back.beginFill(color);
+  typeof color === 'string' ? card_back.beginFill(color) : card_back.beginTextureFill({ texture: color.texture });
   if (innerWidth <= 767) {
-    card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
+    card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10);
   }
   else {
     card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
-  } card_back.endFill();
+  } 
+  card_back.endFill();
   app.stage.addChild(card_back);
 }
 
@@ -91,10 +110,10 @@ function criandoFront(index) {
   const card_front = new PIXI.Graphics();
   card_front.beginFill(0x2d2d2d);
   if (innerWidth <= 767) {
-    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
+    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 315 : 210 : 105 : 0, 75, 100, 10)
   }
   else {
-    card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
+    // card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? 465 : 310 : 155 : 0, 100, 150, 10)
   }
   card_front.state.data = card[index].tras;
   card_front.interactive = true;
@@ -107,11 +126,11 @@ function criandoFront(index) {
 const duplicateCharacters = [...colorCards, ...colorCards];
 const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
 
-// Gerando as cartas e setando um número conforme sua cor
+// Gerando as cartas e setando um número conforme sua cor ou imagem
 shuffledArray.forEach((e, i) => {
   card[i] = {
     frente: shuffledArray[i],
-    tras: (shuffledArray[i] === '0xff0000' ? '1' : shuffledArray[i] === '0x00ffff' ? '2' : shuffledArray[i] === '0x0000ff' ? '3' : shuffledArray[i] === '0xff00ff' ? '4' : shuffledArray[i] === '0xffff00' ? '5' : shuffledArray[i] === '0x00FF00' ? '6' : '')
+    tras: (shuffledArray[i] === sprite1 ? '1' : shuffledArray[i] === sprite2 ? '2' : shuffledArray[i] === sprite3 ? '3' : shuffledArray[i] === sprite4 ? '4' : shuffledArray[i] === sprite5 ? '5' : shuffledArray[i] === sprite6 ? '6' : '')
   }
   criandoBack(shuffledArray[i], i);
 })
