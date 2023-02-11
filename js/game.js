@@ -87,7 +87,7 @@ function cordenadasX(numero) {
     return numero * 80;
   }
   else {
-    return numero * 100;
+    return numero * 100.8;
   }
 }
 
