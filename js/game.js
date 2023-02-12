@@ -5,8 +5,8 @@ if (innerWidth <= 767) {
     backgroundColor: 0x800080,
     autoResize: true,
     resolution: devicePixelRatio,
-    width: 235,
-    height: 415
+    width: 320,
+    height: 600
   });
 }
 else {
@@ -15,20 +15,21 @@ else {
     autoResize: true,
     resolution: devicePixelRatio,
     width: 320,
-    height: 620
+    height: 600
   });
 }
 
 let nivel = 1;
-let tempo = -9;
+let tempo = 50;
 
 const containerMenu = new PIXI.Container();
 app.stage.addChild(containerMenu);
 document.body.appendChild(app.view);
 
 const startText = new PIXI.Text('Iniciar', {
-  fontFamily: 'Times New Roman',
-  fontSize: 50
+  fontFamily: 'Windows',
+  fontSize: 50,
+  fill: '#fff'
 });
 startText.anchor.set(0.5);
 startText.x = app.screen.width / 2;
@@ -64,11 +65,13 @@ function startGame() {
   containerGamer.addChild(startText);
 
   const nivelText = new PIXI.Text('Nível: ' + nivel, {
-    fontFamily: 'Times New Roman'
+    fontFamily: 'Windows',
+    fill: '#fff'
   });
   nivelText.anchor.set(0.5);
   nivelText.x = app.screen.width / 2;
   nivelText.y = 100;
+  nivelText.style.fontSize = 28;
   containerGamer.addChild(nivelText);
 
   // ? SOUND
@@ -118,7 +121,7 @@ function startGame() {
       }
     }
     if (innerWidth <= 767) {
-      return numero * 80;
+      return numero * 100.8;
     }
     else {
       return numero * 100.8;
