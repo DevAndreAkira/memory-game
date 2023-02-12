@@ -19,14 +19,19 @@ else {
   });
 }
 
-let nivel = 1;
-let tempo = 50;
+let level = 1;
+let tempo = 20;
+let containerscore;
 
 const containerMenu = new PIXI.Container();
 app.stage.addChild(containerMenu);
 document.body.appendChild(app.view);
 
-const startText = new PIXI.Text('Iniciar', {
+const containerRetry = new PIXI.Container();
+app.stage.addChild(containerRetry);
+document.body.appendChild(app.view);
+
+const startText = new PIXI.Text('Start game', {
   fontFamily: 'Windows',
   fontSize: 50,
   fill: '#fff'
@@ -64,15 +69,15 @@ function startGame() {
   startText.interactive = false;
   containerGamer.addChild(startText);
 
-  const nivelText = new PIXI.Text('Nível: ' + nivel, {
+  const levelText = new PIXI.Text('Level: ' + level, {
     fontFamily: 'Windows',
     fill: '#fff'
   });
-  nivelText.anchor.set(0.5);
-  nivelText.x = app.screen.width / 2;
-  nivelText.y = 100;
-  nivelText.style.fontSize = 28;
-  containerGamer.addChild(nivelText);
+  levelText.anchor.set(0.5);
+  levelText.x = app.screen.width / 2;
+  levelText.y = 100;
+  levelText.style.fontSize = 28;
+  containerGamer.addChild(levelText);
 
   // ? SOUND
   const soundCard = PIXI.sound.Sound.from('./sound/card.mp3');
@@ -192,7 +197,7 @@ function startGame() {
         pontos = pontos + 1;
         if (pontos === colorCards.length) {
           soundWin.play();
-          nivel = nivel + 1;
+          level = level + 1;
           containerGamer.destroy();
           switchTime = true;
           startGame();
@@ -220,21 +225,10 @@ function startGame() {
     console.log("Ta pegando")
     if (tempo <= 0 || switchTime === true) {
       clearInterval(timerBug);
-      containerGamer.destroy();
-
-      const containerMenu2 = new PIXI.Container();
-      app.stage.addChild(containerMenu2);
-      document.body.appendChild(app.view);
-
-      const textRetry = new PIXI.Text(`Pontuação:  ${pontos}`);
-      textRetry.anchor.set(.5);
-      textRetry.x = app.screen.width / 2;
-      textRetry.y = app.screen.height / 2;
-      textRetry.interactive = true;
-      textRetry.cursor = 'pointer';
-      containerMenu2.addChild(textRetry);
-      textRetry.on('pointerdown', startGame);
-      containerMenu2.destroy();
+      if (tempo <= 0) {
+        containerGamer.destroy();
+        fimJogo();
+      }
     }
     else {
       tempo = tempo - 1;
@@ -243,3 +237,32 @@ function startGame() {
   }, 1000)
 
 };
+
+function fimJogo() {
+  console.log("Fim de jogo");
+
+  const containerscore = new PIXI.Container();
+  app.stage.addChild(containerscore);
+  // window.location.reload();
+
+  const startText1 = new PIXI.Text(`High level: ${level}\n\nRetry?`, {
+    fontFamily: 'Windows',
+    fontSize: 50,
+    fill: '#fff',
+    align: 'center'
+  });
+  // startText.text = `level: ${tempo}`;
+  startText1.anchor.set(0.5);
+  startText1.x = app.screen.width / 2;
+  startText1.y = 150;
+  startText1.style.fontSize = 28;
+  startText1.interactive = true;
+  startText1.cursor = 'pointer';
+  containerscore.addChild(startText1);
+  startText1.on('pointerdown', () => {
+    level = 1;
+    tempo = 20;
+    containerscore.destroy();
+    startGame();
+  });
+}
