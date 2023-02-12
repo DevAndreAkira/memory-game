@@ -20,20 +20,32 @@ else {
 }
 
 let nivel = 1;
-let tempo = 50;
+let tempo = -9;
 
 const containerMenu = new PIXI.Container();
 app.stage.addChild(containerMenu);
 document.body.appendChild(app.view);
 
-const startText = new PIXI.Text('Iniciar');
+const startText = new PIXI.Text('Iniciar', {
+  fontFamily: 'Times New Roman',
+  fontSize: 50
+});
 startText.anchor.set(0.5);
 startText.x = app.screen.width / 2;
 startText.y = 150;
 startText.interactive = true;
 startText.cursor = 'pointer';
 containerMenu.addChild(startText);
-startText.on('pointerdown', startGame)
+startText.on('pointerdown', startGame);
+
+const thumbTest = PIXI.Sprite.from('./img/thumb1.png');
+thumbTest.anchor.set(0.5);
+thumbTest.x = app.screen.width / 2;
+thumbTest.y = 250;
+thumbTest.interactive = true;
+thumbTest.cursor = 'pointer';
+containerMenu.addChild(thumbTest);
+thumbTest.on('pointerdown', startGame);
 
 function startGame() {
   let switchTime = false;
@@ -46,11 +58,14 @@ function startGame() {
   app.stage.addChild(containerGamer);
   document.body.appendChild(app.view);
 
-  startText.text = `Time: ${tempo}`
+  startText.text = `Time: ${tempo}`;
+  startText.style.fontSize = 28;
   startText.interactive = false;
   containerGamer.addChild(startText);
 
-  const nivelText = new PIXI.Text('Nível: ' + nivel);
+  const nivelText = new PIXI.Text('Nível: ' + nivel, {
+    fontFamily: 'Times New Roman'
+  });
   nivelText.anchor.set(0.5);
   nivelText.x = app.screen.width / 2;
   nivelText.y = 100;
@@ -204,18 +219,19 @@ function startGame() {
       clearInterval(timerBug);
       containerGamer.destroy();
 
-      // const containerMenu = new PIXI.Container();
-      // app.stage.addChild(containerMenu);
-      // document.body.appendChild(app.view);
+      const containerMenu2 = new PIXI.Container();
+      app.stage.addChild(containerMenu2);
+      document.body.appendChild(app.view);
 
-      // const textRetry = new PIXI.Text(`Pontuação:  ${pontos}`);
-      // textRetry.anchor(.5);
-      // textRetry.width = app.screen.width/2;
-      // textRetry.height = app.screen.height/2;
-      // textRetry.interactive = true;
-      // textRetry.cursor = 'pointer';
-      // containerMenu.addChild(textRetry);
-      // textRetry.on('pointerdown', startGame);
+      const textRetry = new PIXI.Text(`Pontuação:  ${pontos}`);
+      textRetry.anchor.set(.5);
+      textRetry.x = app.screen.width / 2;
+      textRetry.y = app.screen.height / 2;
+      textRetry.interactive = true;
+      textRetry.cursor = 'pointer';
+      containerMenu2.addChild(textRetry);
+      textRetry.on('pointerdown', startGame);
+      containerMenu2.destroy();
     }
     else {
       tempo = tempo - 1;
