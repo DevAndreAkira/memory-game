@@ -90,12 +90,12 @@ function startGame() {
   // ^LÓGICA
   const thumb = PIXI.Sprite.from('./img/thumb.png');
 
-  const sprite1 = PIXI.Sprite.from('./img/sprite1.jpg');
-  const sprite2 = PIXI.Sprite.from('./img/sprite2.jpg');
-  const sprite3 = PIXI.Sprite.from('./img/sprite3.jpg');
-  const sprite4 = PIXI.Sprite.from('./img/sprite4.jpg');
-  const sprite5 = PIXI.Sprite.from('./img/sprite5.jpg');
-  const sprite6 = PIXI.Sprite.from('./img/sprite6.jpg');
+  const sprite1 = PIXI.Sprite.from('./img/sprite1.png');
+  const sprite2 = PIXI.Sprite.from('./img/sprite2.png');
+  const sprite3 = PIXI.Sprite.from('./img/sprite3.png');
+  const sprite4 = PIXI.Sprite.from('./img/sprite4.png');
+  const sprite5 = PIXI.Sprite.from('./img/sprite5.png');
+  const sprite6 = PIXI.Sprite.from('./img/sprite6.png');
 
   // Determino o número de cores que terá nas cartas
   let colorCards = [
