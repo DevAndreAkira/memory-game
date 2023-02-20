@@ -138,7 +138,7 @@ function startGame() {
     const card_back = new PIXI.Graphics();
     typeof color === 'string' ? card_back.beginFill(color) : card_back.beginTextureFill({ texture: color.texture });
     if (innerWidth <= 767) {
-      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10);
+      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 50, 50, 10);
     }
     else {
       card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10)
