@@ -4,7 +4,7 @@ if (innerWidth <= 767) {
   app = new PIXI.Application({
     backgroundColor: 0x800080,
     autoResize: true,
-    resolution: devicePixelRatio,
+    // resolution: devicePixelRatio,
     width: 320,
     height: 600
   });
@@ -13,7 +13,7 @@ else {
   app = new PIXI.Application({
     backgroundColor: 0x800080,
     autoResize: true,
-    resolution: devicePixelRatio,
+    // resolution: devicePixelRatio,
     width: 320,
     height: 600
   });
@@ -112,7 +112,7 @@ function startGame() {
   let guardando2 = 0;
   let pontos = 0;
 
-  let localTeste = 200;
+  let tamanhoImg = 200;
 
   let teste = 0;
 
@@ -134,14 +134,14 @@ function startGame() {
   }
 
   // Parte de trás da carta
-  function criandoBack(color, index, thumb) {
+  function criandoBack(color, index) {
     const card_back = new PIXI.Graphics();
     typeof color === 'string' ? card_back.beginFill(color) : card_back.beginTextureFill({ texture: color.texture });
     if (innerWidth <= 767) {
-      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10);
+      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + tamanhoImg) : (200 + tamanhoImg) : (100 + tamanhoImg) : (0 + tamanhoImg), 100, 100, 10);
     }
     else {
-      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10)
+      card_back.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + tamanhoImg) : (200 + tamanhoImg) : (100 + tamanhoImg) : (0 + tamanhoImg), 100, 100, 10)
     }
     card_back.endFill();
     containerGamer.addChild(card_back);
@@ -152,10 +152,10 @@ function startGame() {
     const card_front = new PIXI.Graphics();
     card_front.beginTextureFill({ texture: thumb.texture });
     if (innerWidth <= 767) {
-      card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10)
+      card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + tamanhoImg) : (200 + tamanhoImg) : (100 + tamanhoImg) : (0 + tamanhoImg), 100, 100, 10)
     }
     else {
-      card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + localTeste) : (200 + localTeste) : (100 + localTeste) : (0 + localTeste), 100, 100, 10)
+      card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + tamanhoImg) : (200 + tamanhoImg) : (100 + tamanhoImg) : (0 + tamanhoImg), 100, 100, 10)
     }
     card_front.state.data = card[index].tras;
     card_front.interactive = true;
@@ -221,10 +221,10 @@ function startGame() {
     }
   }
 
-  const timerBug = setInterval(() => {
-    console.log("Ta pegando")
+  const timerMemory = setInterval(() => {
+    console.log("Tempo passando")
     if (tempo <= 0 || switchTime === true) {
-      clearInterval(timerBug);
+      clearInterval(timerMemory);
       if (tempo <= 0) {
         containerGamer.destroy();
         fimJogo();
@@ -243,7 +243,6 @@ function fimJogo() {
 
   const containerscore = new PIXI.Container();
   app.stage.addChild(containerscore);
-  // window.location.reload();
 
   const startText1 = new PIXI.Text(`High level: ${level}\n\nRetry?`, {
     fontFamily: 'Windows',
@@ -251,7 +250,6 @@ function fimJogo() {
     fill: '#fff',
     align: 'center'
   });
-  // startText.text = `level: ${tempo}`;
   startText1.anchor.set(0.5);
   startText1.x = app.screen.width / 2;
   startText1.y = 150;
