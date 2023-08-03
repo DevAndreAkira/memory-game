@@ -90,14 +90,27 @@ function startGame() {
   // ^LÓGICA
   const thumb = PIXI.Sprite.from('./img/thumb.png');
 
-  const sprite1 = PIXI.Sprite.from('./img/sprite1.png');
-  const sprite2 = PIXI.Sprite.from('./img/sprite2.png');
-  const sprite3 = PIXI.Sprite.from('./img/sprite3.png');
-  const sprite4 = PIXI.Sprite.from('./img/sprite4.png');
-  const sprite5 = PIXI.Sprite.from('./img/sprite5.png');
-  const sprite6 = PIXI.Sprite.from('./img/sprite6.png');
+  let sprite1, sprite2, sprite3, sprite4, sprite5, sprite6
+
+  if (innerWidth >= 768) {
+    sprite1 = PIXI.Sprite.from('./img/sprite1.png');
+    sprite2 = PIXI.Sprite.from('./img/sprite2.png');
+    sprite3 = PIXI.Sprite.from('./img/sprite3.png');
+    sprite4 = PIXI.Sprite.from('./img/sprite4.png');
+    sprite5 = PIXI.Sprite.from('./img/sprite5.png');
+    sprite6 = PIXI.Sprite.from('./img/sprite6.png');
+  }
+  else {
+    sprite1 = '0xff0000';
+    sprite2 = '0xffff00';
+    sprite3 = '0xff00ff';
+    sprite4 = '0x00ffff';
+    sprite5 = '0x0000ff';
+    sprite6 = '0x0fff0f';
+  }
 
   // Determino o número de cores que terá nas cartas
+
   let colorCards = [
     sprite1,
     sprite2,
@@ -106,6 +119,7 @@ function startGame() {
     sprite5,
     sprite6
   ];
+
   let card = {};
   let tentativas = 0;
   let guardando1 = 0;
