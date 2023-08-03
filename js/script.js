@@ -44,7 +44,8 @@ startText.cursor = 'pointer';
 containerMenu.addChild(startText);
 startText.on('pointerdown', startGame);
 
-const thumbTest = PIXI.Sprite.from('./img/thumb1.png');
+
+let thumbTest = PIXI.Sprite.from('./img/thumb1.png');
 thumbTest.anchor.set(0.5);
 thumbTest.x = app.screen.width / 2;
 thumbTest.y = 250;
@@ -88,8 +89,13 @@ function startGame() {
   soundOk.volume = .1;
 
   // ^LÓGICA
-  const thumb = PIXI.Sprite.from('./img/thumb.png');
-
+  let thumb;
+  if (innerWidth >= 768) {
+    thumb = PIXI.Sprite.from('./img/thumb.png');
+  }
+  else {
+    thumb = '0x444444';
+  }
   let sprite1, sprite2, sprite3, sprite4, sprite5, sprite6
 
   if (innerWidth >= 768) {
@@ -164,7 +170,7 @@ function startGame() {
   // Parte da frente da carta
   function criandoFront(index) {
     const card_front = new PIXI.Graphics();
-    card_front.beginTextureFill({ texture: thumb.texture });
+    typeof thumb === 'string' ? card_front.beginFill(thumb) : card_front.beginTextureFill({ texture: thumb.texture });
     if (innerWidth <= 767) {
       card_front.drawRoundedRect(cordenadasX(index), (index >= 3) ? (index >= 6) ? (index >= 9) ? (300 + tamanhoImg) : (200 + tamanhoImg) : (100 + tamanhoImg) : (0 + tamanhoImg), 100, 100, 10)
     }
